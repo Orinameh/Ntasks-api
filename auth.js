@@ -6,15 +6,15 @@ module.exports = app =>{
 	const cfg = app.libs.config;
 	const params = {
 		secretOrKey: cfg.jwtSecret,
-		jwtFromRequest: ExtractJwt.fromAuthHeader()
+		jwtFromRequest: ExtractJwt.fromAuthHeaderWithScheme('jwt')
 	};
 
 	const strategy = new Strategy(params, (payload, done) => {
 		Users.findById(payload.id)
 		.then(user => {
 			if(user) {
-				return done(null, {
-					id: user.id,
+				return done(null, {  //done callback sends the authenticated user's data to the authenticated routes
+					id: user.id,      //which receives data(id and email) via req.user object
 					email: user.email
 				});
 			}

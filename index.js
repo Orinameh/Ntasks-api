@@ -8,7 +8,8 @@ const app = express();
 consign()
     .include("libs/config.js") // becomes app.lib.config when acessing
     //all models are loaded directly by this file
-    .then("db.js")     
+    .then("db.js")
+    .then("auth.js")     
     .then("libs/middlewares.js")
     .then("routes")
     .then("libs/boot.js")
