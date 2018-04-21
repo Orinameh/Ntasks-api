@@ -4,7 +4,8 @@ module.exports = (sequelize, DataType) => {
         id: {
             type: DataType.INTEGER,
             primaryKey: true,
-            autoIncrement: true
+            autoIncrement: true,
+            allowNull: false
         },
 
         name: {
@@ -34,8 +35,8 @@ module.exports = (sequelize, DataType) => {
     }, {
         hooks: {
             beforeCreate: user => {
-                const salt = bcrypt.genSaltSync();
-                user.password = bcrypt.hashSync(user.password, salt);
+                // const salt = bcrypt.genSaltSync();
+                user.password = bcrypt.hashSync(user.password,  bcrypt.genSaltSync(8), null);
             }
         }
     },
@@ -45,10 +46,14 @@ module.exports = (sequelize, DataType) => {
             associate: (models) => {
                 Users.hasMany(models.Tasks)
             },
-            isPassword: (encodedPassword, password) => {
-                return bcrypt.compareSync(password, encodedPassword)
-            }
-        }
+
+            // isPassword: (password, encodedPassword) => {
+            //     return bcrypt.compareSync(password, encodedPassword)
+            // }
+            
+        },
+
+       
     });
     return Users;
 }

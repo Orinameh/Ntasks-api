@@ -1,4 +1,5 @@
 import bodyParser from "body-parser";
+import express from 'express';
 
 module.exports = app => {
     app.set("port", 3000); //use the set method in express
@@ -13,4 +14,7 @@ module.exports = app => {
         delete req.body.id;
         next();
     });
+
+    // for apidoc documentation
+    app.use(express.static("public"));
 }

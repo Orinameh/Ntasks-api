@@ -5,7 +5,7 @@ import consign from "consign";
 const app = express();
 
 // consign helps to access all these anywhere 
-consign()
+consign({verbose: false})
     .include("libs/config.js") // becomes app.lib.config when acessing
     //all models are loaded directly by this file
     .then("db.js")

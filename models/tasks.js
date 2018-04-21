@@ -21,6 +21,10 @@ module.exports = (sequelize, DataType) => {
             type: DataType.BOOLEAN,
             allowNull: false,
             defaultValue: false
+        },
+        user_id: {
+            type: DataType.INTEGER,
+            
         }
     }, {
         classMethods: {
