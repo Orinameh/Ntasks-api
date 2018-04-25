@@ -45,8 +45,8 @@ describe('Routes: Tasks', () => {
 					.expect(200)
 					.end((err, res) => {
 						expect(res.body).to.have.lengthOf(2)
-						expect(res.body[0].title).to.deep.equal('Work');
-						expect(res.body[1].title).to.deep.equal('Study');
+						expect(res.body[0].title).to.equal('Work');
+						expect(res.body[1].title).to.equal('Study');
 						done(err);
 						
 					});
@@ -91,7 +91,6 @@ describe('Routes: Tasks', () => {
 					.set('Authorization', `JWT ${token}`)
 					.expect(404)
 					.end((err, res) => {
-						expect(res.body.title).to.equal('Work')
 						done(err);
 					})
 

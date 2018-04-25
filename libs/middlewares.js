@@ -1,10 +1,24 @@
 import bodyParser from "body-parser";
 import express from 'express';
+import morgan from 'morgan';
+import cors from 'cors';
+import logger from './logger';
 
 module.exports = app => {
     app.set("port", 3000); //use the set method in express
     app.set("json spaces", 4); // assings tab to json objects to format
-
+    app.use(morgan('common', {
+        stream: {
+            write: (message) => {
+                logger.info(message);
+            }
+        }
+    }));
+    app.use(cors({
+        origin: '*',
+        methods: ['GET', 'PUT', 'POST', 'DELETE'],
+        allowedHeaders: ['Content-Type', 'Authorization']
+    }));
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({extended: false}));
 
