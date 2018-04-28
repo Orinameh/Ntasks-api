@@ -2,6 +2,8 @@ import bodyParser from "body-parser";
 import express from 'express';
 import morgan from 'morgan';
 import cors from 'cors';
+import compression from 'compression';
+import helmet from 'helmet';
 import logger from './logger';
 
 module.exports = app => {
@@ -14,11 +16,13 @@ module.exports = app => {
             }
         }
     }));
+    app.use(helmet());
     app.use(cors({
         origin: '*',
         methods: ['GET', 'PUT', 'POST', 'DELETE'],
         allowedHeaders: ['Content-Type', 'Authorization']
     }));
+    app.use(compression());
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({extended: false}));
 

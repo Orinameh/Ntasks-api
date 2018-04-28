@@ -8,7 +8,7 @@
   "description": "Task list API",
   "main": "index.js",
   "scripts": {
-    "start": "babel-node index.js",
+    "start": "yarn run apidoc && yarn run clusters",
     "clusters": "babel-node clusters.js",
     "apidoc": "apidoc -i routes/ -o public/apidoc",
     "test": "NODE_ENV=test mocha test/**/*.js"
@@ -26,11 +26,13 @@
     "babel-preset-es2015": "^6.5.0",
     "bcrypt": "^2.0.0",
     "body-parser": "^1.17.2",
+    "compression": "^1.7.2",
     "consign": "^0.1.6",
     "cors": "^2.8.4",
     "dev": "^0.1.3",
     "express": "^4.15.4",
     "global": "^4.3.2",
+    "helmet": "^3.12.0",
     "jwt-simple": "^0.5.1",
     "morgan": "^1.9.0",
     "passport": "^0.4.0",
