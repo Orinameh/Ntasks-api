@@ -3,7 +3,7 @@ import fs from "fs";
 
 // for server initialization 
 module.exports = app => {
-    // This prevents the server from running twice in the test environment
+    // This prevents the db server from running twice in the test environment
    if (process.env.NODE_ENV !== "test") {
 
         const credentials = {
